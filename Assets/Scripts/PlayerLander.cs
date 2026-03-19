@@ -30,6 +30,8 @@ public class PlayerLander : MonoBehaviour
             _playerLander.AddTorque(turnSpeed * Time.deltaTime);
         }
 
+        // this player 2
+
         if (Keyboard.current.wKey.isPressed)
         {
     
@@ -57,8 +59,29 @@ public class PlayerLander : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision2D)
     {
-        Debug.Log("The Lander OnCollisionEnter2D");
+        // 1. Get the impact velocity (how hard we hit)
+    float impactSpeed = collision2D.relativeVelocity.magnitude;
+
+    // 2. Define our safety thresholds
+    float maxSafeSpeed = 5f; 
+    float maxSafeAngle = 15f; // degrees from upright
+
+    // 3. Check the angle of the lander (0 is perfectly upright)
+    float landerAngle = Mathf.Abs(transform.rotation.eulerAngles.z);
+    // Adjusting for Unity's 0-360 rotation logic
+    if (landerAngle > 180) landerAngle = 360 - landerAngle;
+
+    if (impactSpeed < maxSafeSpeed && landerAngle < maxSafeAngle)
+    {
+        Debug.Log($"Safe Landing! Speed: {impactSpeed:F2}, Angle: {landerAngle:F2}");
+        // You could trigger a "Level Complete" UI here
+    }
+    else
+    {
+        Debug.Log($"CRASH! Speed: {impactSpeed:F2} (Max: {maxSafeSpeed}), Angle: {landerAngle:F2}");
+        // You could trigger an explosion effect or restart the level here
+    }
     }
 }

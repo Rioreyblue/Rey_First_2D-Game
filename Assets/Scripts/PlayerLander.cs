@@ -29,5 +29,29 @@ public class PlayerLander : MonoBehaviour
             float turnSpeed = -100f;
             _playerLander.AddTorque(turnSpeed * Time.deltaTime);
         }
+
+        if (Keyboard.current.wKey.isPressed)
+        {
+    
+            float force = 800f;
+            _playerLander.AddForce(force * transform.up * Time.deltaTime);
+        
+        }
+
+        if (Keyboard.current.dKey.isPressed)
+        {
+    
+             float turnSpeed = -100f;
+            _playerLander.AddTorque(turnSpeed * Time.deltaTime);
+        
+        }
+
+        if (Keyboard.current.aKey.isPressed)
+        {
+    
+            float turnSpeed = +100f;
+            _playerLander.AddTorque(turnSpeed * Time.deltaTime);
+        
+        }
     } 
 }

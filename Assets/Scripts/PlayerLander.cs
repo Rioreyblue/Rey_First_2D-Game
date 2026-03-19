@@ -53,5 +53,12 @@ public class PlayerLander : MonoBehaviour
             _playerLander.AddTorque(turnSpeed * Time.deltaTime);
         
         }
-    } 
+        
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("The Lander OnCollisionEnter2D");
+    }
 }

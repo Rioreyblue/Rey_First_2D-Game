@@ -82,6 +82,7 @@ public class PlayerLander : MonoBehaviour
     {
         Debug.Log($"CRASH! Speed: {impactSpeed:F2} (Max: {maxSafeSpeed}), Angle: {landerAngle:F2}");
         // You could trigger an explosion effect or restart the level here
+        
     }
     }
 }

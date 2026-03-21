@@ -6,6 +6,7 @@ public class PlayerLander : MonoBehaviour
 {
 
     private Rigidbody2D _playerLander;
+    [Header("Player Components")]
     [SerializeField] float _playerLanderSpeed;  
    private void Awake()
     {

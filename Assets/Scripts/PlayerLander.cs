@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.Versioning;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,6 +6,7 @@ public class PlayerLander : MonoBehaviour
 {
 
     private Rigidbody2D _playerLander;
+    [SerializeField] float _playerLanderSpeed;  
    private void Awake()
     {
         _playerLander = GetComponent<Rigidbody2D>();

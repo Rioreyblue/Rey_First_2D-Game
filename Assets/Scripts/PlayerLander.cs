@@ -7,18 +7,20 @@ public class PlayerLander : MovementScript
     [SerializeField] float _maxSafeSpeed = 5f; 
     [SerializeField] float _maxSafeAngle = 15f;
 
-    private MovementScript _mover;
+    // private MovementScript _mover;
 
-    private void Awake()
+    protected override void Awake()
     {
         // Runs the Rigidbody setup in MovementScript
-        _mover = GetComponent<MovementScript>();
-        Application.targetFrameRate = 60;
+        // _mover = GetComponent<MovementScript>();
+        base.Awake();
+        // Application.targetFrameRate = 60;
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
         // Runs HandleThrust and HandleRotation in MovementScript
+        base.FixedUpdate();
     }
 
     private void OnCollisionEnter2D(Collision2D collision2D)

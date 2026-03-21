@@ -50,10 +50,10 @@ public class MovementScript : MonoBehaviour
             // }
 
 
-            float rotationInput = 0;
+            float rotationInput = 0f;
 
-            if(Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed) rotationInput = +1;
-            if(Keyboard.current.rightArrowKey.isPressed || Keyboard.current.dKey.isPressed) rotationInput = -1;
+            if(Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed) rotationInput = +1f;
+            if(Keyboard.current.rightArrowKey.isPressed || Keyboard.current.dKey.isPressed) rotationInput = -1f;
 
             _playerLander.AddTorque(rotationInput * _torqueForce * Time.deltaTime);
         }

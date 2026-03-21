@@ -16,48 +16,6 @@ public class PlayerLander : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Keyboard.current.upArrowKey.isPressed)
-        {
-            float force = 800f;
-            _playerLander.AddForce(force * transform.up * Time.deltaTime);
-        }
-
-        if (Keyboard.current.leftArrowKey.isPressed)
-        {
-            float turnSpeed = +100f;
-            _playerLander.AddTorque(turnSpeed * Time.deltaTime);
-        }
-        if (Keyboard.current.rightArrowKey.isPressed)
-        {
-            float turnSpeed = -100f;
-            _playerLander.AddTorque(turnSpeed * Time.deltaTime);
-        }
-
-        // this player 2
-
-        if (Keyboard.current.wKey.isPressed)
-        {
-    
-            float force = 800f;
-            _playerLander.AddForce(force * transform.up * Time.deltaTime);
-        
-        }
-
-        if (Keyboard.current.dKey.isPressed)
-        {
-    
-             float turnSpeed = -100f;
-            _playerLander.AddTorque(turnSpeed * Time.deltaTime);
-        
-        }
-
-        if (Keyboard.current.aKey.isPressed)
-        {
-    
-            float turnSpeed = +100f;
-            _playerLander.AddTorque(turnSpeed * Time.deltaTime);
-        
-        }
         
     }
 

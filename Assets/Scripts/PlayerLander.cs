@@ -1,49 +1,43 @@
-using System;
-using System.Runtime.Versioning;
 using UnityEngine;
-using UnityEngine.InputSystem;
-public class PlayerLander : MonoBehaviour
-{
+using Movements;
 
-    private Rigidbody2D _playerLander;
-    [Header("Player Components")]
-    [SerializeField] float _playerLanderSpeed;  
-   private void Awake()
+public class PlayerLander : MovementScript
+{
+    [Header("Landing Requirements")]
+    [SerializeField] float _maxSafeSpeed = 5f; 
+    [SerializeField] float _maxSafeAngle = 15f;
+
+    private MovementScript _mover;
+
+    private void Awake()
     {
-        _playerLander = GetComponent<Rigidbody2D>();
+        // Runs the Rigidbody setup in MovementScript
+        _mover = GetComponent<MovementScript>();
         Application.targetFrameRate = 60;
     }
 
     private void FixedUpdate()
     {
-        
+        // Runs HandleThrust and HandleRotation in MovementScript
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
-        // 1. Get the impact velocity (how hard we hit)
-    float impactSpeed = collision2D.relativeVelocity.magnitude;
+        // 1. Calculate impact severity
+        float impactSpeed = collision2D.relativeVelocity.magnitude;
 
-    // 2. Define our safety thresholds
-    float maxSafeSpeed = 5f; 
-    float maxSafeAngle = 15f; // degrees from upright
+        // 2. Calculate angle (0 is upright)
+        float landerAngle = Mathf.Abs(transform.rotation.eulerAngles.z);
+        if (landerAngle > 180) landerAngle = 360 - landerAngle;
 
-    // 3. Check the angle of the lander (0 is perfectly upright)
-    float landerAngle = Mathf.Abs(transform.rotation.eulerAngles.z);
-    // Adjusting for Unity's 0-360 rotation logic
-    if (landerAngle > 180) landerAngle = 360 - landerAngle;
-
-    if (impactSpeed < maxSafeSpeed && landerAngle < maxSafeAngle)
-    {
-        Debug.Log($"Safe Landing! Speed: {impactSpeed:F2}, Angle: {landerAngle:F2}");
-        // You could trigger a "Level Complete" UI here
-    }
-    else
-    {
-        Debug.Log($"CRASH! Speed: {impactSpeed:F2} (Max: {maxSafeSpeed}), Angle: {landerAngle:F2}");
-        // You could trigger an explosion effect or restart the level here
-        
-    }
+        // 3. Determine Landing Outcome
+        if (impactSpeed < _maxSafeSpeed && landerAngle < _maxSafeAngle)
+        {
+            Debug.Log($"Safe Landing! Speed: {impactSpeed:F2}, Angle: {landerAngle:F2}");
+        }
+        else
+        {
+            Debug.Log($"CRASH! Speed: {impactSpeed:F2} (Max: {_maxSafeSpeed}), Angle: {landerAngle:F2}");
+        }
     }
 }

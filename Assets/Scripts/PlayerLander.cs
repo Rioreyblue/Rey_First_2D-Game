@@ -1,45 +1,52 @@
+using Unity.VisualScripting;
 using UnityEngine;
-using Movements;
+using UnityEngine.InputSystem;
 
-public class PlayerLander : MovementScript
+[RequireComponent(typeof(Rigidbody2D))]
+public class PlayerLander : MonoBehaviour
 {
-    [Header("Landing Requirements")]
-    [SerializeField] float _maxSafeSpeed = 5f; 
-    [SerializeField] float _maxSafeAngle = 15f;
+    [Header("Settings")]
+    [SerializeField] float _thrustForce = 800f;
+    [SerializeField] float _torqueForce = 200f;
+    private Rigidbody2D _rb;
+   
 
-    // private MovementScript _mover;
-
-    protected override void Awake()
+    private void Awake()
     {
-        // Runs the Rigidbody setup in MovementScript
-        // _mover = GetComponent<MovementScript>();
-        base.Awake();
-        // Application.targetFrameRate = 60;
+     _rb = GetComponent<Rigidbody2D>();
+     Application.targetFrameRate = 60;
     }
 
-    protected override void FixedUpdate()
+    private void FixedUpdate()
     {
-        // Runs HandleThrust and HandleRotation in MovementScript
-        base.FixedUpdate();
+       HandleThrust();
+       HandleRotation();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision2D)
+    #region Player Movements
+    private void HandleThrust()
     {
-        // 1. Calculate impact severity
-        float impactSpeed = collision2D.relativeVelocity.magnitude;
-
-        // 2. Calculate angle (0 is upright)
-        float landerAngle = Mathf.Abs(transform.rotation.eulerAngles.z);
-        if (landerAngle > 180) landerAngle = 360 - landerAngle;
-
-        // 3. Determine Landing Outcome
-        if (impactSpeed < _maxSafeSpeed && landerAngle < _maxSafeAngle)
+        if(Keyboard.current == null) return;
+        if(Keyboard.current.upArrowKey.isPressed || Keyboard.current.wKey.isPressed)
         {
-            Debug.Log($"Safe Landing! Speed: {impactSpeed:F2}, Angle: {landerAngle:F2}");
-        }
-        else
-        {
-            Debug.Log($"CRASH! Speed: {impactSpeed:F2} (Max: {_maxSafeSpeed}), Angle: {landerAngle:F2}");
+            _rb.AddForce(transform.up * _thrustForce * Time.fixedDeltaTime);
         }
     }
+
+    private void HandleRotation()
+    {
+         float rotationInput = 0;
+
+        if(Keyboard.current == null) return;
+        if(Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed) rotationInput += +1f;
+        if(Keyboard.current.rightArrowKey.isPressed || Keyboard.current.dKey.isPressed) rotationInput = -1f;
+        
+        _rb.AddTorque(rotationInput * _torqueForce * Time.fixedDeltaTime);
+
+    }
+    #endregion
+
+#region 
+   
+#endregion
 }

@@ -3,7 +3,3 @@
 !Assets/
 Assets/*
 !Assets/Scripts/
-Assets/Scripts/*
-!Assets/Scripts/PlayerLander.cs
-!Assets/Scripts/MovementScript.cs
-!Assets/Scripts/CoinAnimation.cs

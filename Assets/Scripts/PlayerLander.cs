@@ -46,7 +46,19 @@ public class PlayerLander : MonoBehaviour
     }
     #endregion
 
-#region 
+#region Player Collision
+
+    private void OnCollisionEnter2D(Collision2D collision2D)
+    {
+        if(!collision2D.gameObject.TryGetComponent(out LandingPad landingPad))
+        {
+            Debug.Log("Crash on Terrain");
+        }
+        // if(collision2D.gameObject.TryGetComponent(out Terain terain))
+        // {
+        //     Debug.Log("Lander has crash");
+        // }
+    }
    
 #endregion
 }

@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +14,10 @@ public class PlayerLander : MonoBehaviour
     {
      _rb = GetComponent<Rigidbody2D>();
      Application.targetFrameRate = 60;
+        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
+        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
+        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
+        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
     }
 
     private void FixedUpdate()
@@ -48,16 +51,39 @@ public class PlayerLander : MonoBehaviour
 
 #region Player Collision
 
+    // private void OnCollisionEnter2D(Collision2D collision2D)
+    // {
+    //     
+    //     // if(collision2D.gameObject.TryGetComponent(out Terain terain))
+    //     // {
+    //     //     Debug.Log("Lander has crash");
+    //     // }
+    // }
+
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
+        float softLandingVelocity = 4f;
+        if(collision2D.relativeVelocity.magnitude > softLandingVelocity)
+        {
+            Debug.Log("Landed Too Hard");
+            return;
+        }
+        float dotVector = Vector2.Dot(Vector2.up, transform.up);
+        float minDotVector = .90f;
+        if(minDotVector < dotVector)
+        {
+            Debug.Log("Landed on steep angle");
+        }
+
         if(!collision2D.gameObject.TryGetComponent(out LandingPad landingPad))
         {
             Debug.Log("Crash on Terrain");
         }
-        // if(collision2D.gameObject.TryGetComponent(out Terain terain))
-        // {
-        //     Debug.Log("Lander has crash");
-        // }
+
+        else
+        {
+            Debug.Log("Successful Landing");
+        }
     }
    
 #endregion

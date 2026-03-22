@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -101,6 +102,8 @@ public class PlayerLander : MonoBehaviour
 
         Debug.Log("landingAngleScore: "+ landingAngleScore);
         Debug.Log("landingSpeedScore: "+ landingSpeedScore);
+
+        int score = Mathf.RoundToInt((landingAngleScore + landingSpeedScore) * landingPad.getScoreMultiplier());
         
     }
    

@@ -15,10 +15,10 @@ public class PlayerLander : MonoBehaviour
     {
      _rb = GetComponent<Rigidbody2D>();
      Application.targetFrameRate = 60;
-        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
-        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
-        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
-        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
+        Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
+        Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
+        Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
+        Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
     }
 
     private void FixedUpdate()
@@ -52,20 +52,11 @@ public class PlayerLander : MonoBehaviour
 
 #region Player Collision
 
-    // private void OnCollisionEnter2D(Collision2D collision2D)
-    // {
-    //     
-    //     // if(collision2D.gameObject.TryGetComponent(out Terain terain))
-    //     // {
-    //     //     Debug.Log("Lander has crash");
-    //     // }
-    // }
-
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
          if(!collision2D.gameObject.TryGetComponent(out LandingPad landingPad))
         {
-            Debug.Log("Crash on Terrain");
+            Debug.Log("Crash on Terrain or crash on Lanb");
         }
 
         float softLandingVelocityMagnitude = 4f;
@@ -104,7 +95,7 @@ public class PlayerLander : MonoBehaviour
         Debug.Log("landingSpeedScore: "+ landingSpeedScore);
 
         int score = Mathf.RoundToInt((landingAngleScore + landingSpeedScore) * landingPad.getScoreMultiplier());
-        
+          
     }
    
 #endregion

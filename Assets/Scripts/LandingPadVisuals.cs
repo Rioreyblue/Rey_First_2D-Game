@@ -1,11 +1,11 @@
 using TMPro;
 using UnityEngine;
 
-public class LandingPadBehaviour : MonoBehaviour
+public class LandingPadVisuals : MonoBehaviour
 {
- [SerializeField] private TextMeshPro scoreMultiplierTextSmesh;
+    [SerializeField] private TextMeshPro scoreMultiplierTextSmesh;
 
- private void Awake()
+    private void Awake()
     {
         LandingPad landingPad = GetComponent<LandingPad>();
         scoreMultiplierTextSmesh.text = "x" + landingPad.getScoreMultiplier();

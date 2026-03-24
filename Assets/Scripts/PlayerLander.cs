@@ -15,10 +15,10 @@ public class PlayerLander : MonoBehaviour
     {
      _rb = GetComponent<Rigidbody2D>();
      Application.targetFrameRate = 60;
-        Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
-        Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
-        Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
-        Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
+        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
+        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
+        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
+        // Debug.Log(Vector2.Dot(new Vector2(0,1), new Vector2(0,1)));
     }
 
     private void FixedUpdate()

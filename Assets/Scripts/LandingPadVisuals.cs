@@ -8,6 +8,6 @@ public class LandingPadVisuals : MonoBehaviour
     private void Awake()
     {
         LandingPad landingPad = GetComponent<LandingPad>();
-        scoreMultiplierTextSmesh.text = "x" + landingPad.getScoreMultiplier();
+        scoreMultiplierTextSmesh.text = "x" + landingPad.GetScoreMultiplier();
     }
 }
